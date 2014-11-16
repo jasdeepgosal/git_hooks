@@ -1,5 +1,10 @@
 #!/bin/sh
 
+count=$(git diff --cached --name-only | grep "spec" -c)
+if [ $count -eq 0 ]; then
+  exit 0
+fi
+
 status=0
 flags=( ':focus' 'focus: true' 'focus => true')
 for flag in "${flags[@]}"; do
