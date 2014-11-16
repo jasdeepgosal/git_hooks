@@ -1,0 +1,11 @@
+#!/bin/sh
+
+red='\033[0;31m'
+nc='\033[0m' # No Color
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ $branch = "master" ]; then
+  echo "${red}Please don't commit directly on master.${nc}"
+  exit 1
+fi

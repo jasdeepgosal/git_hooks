@@ -14,6 +14,8 @@ git hooks that I use on all my repos.
   - Runs `rubocop` on any modified `*.rb` files.
 - `pre-commit-rails_best_practices`
   - Runs `rails_best_practices` on any modified files, but ignores "remove unused" warnings because they're inaccurate when not being run on the full codebase.
+- `pre-commit-commit-directly-on-master`
+  - Checks if you're committing directly on master.
 
 ## Installation
 
