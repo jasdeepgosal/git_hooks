@@ -10,6 +10,8 @@ git hooks that I use on all my repos.
 	- Checks if there is any trailing whitespace in any of the modified files.
 - `pre-commit-focus-tags`
   - Checks if there are any ":focus" tags left in any spec files.
+- `pre-commit-rubocop`
+  - Runs `rubocop` on any modified `*.rb` files.
 
 ## Installation
 
