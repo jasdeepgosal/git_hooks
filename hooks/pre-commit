@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# make sure we're running scripts from the base directory of the repo - for consistency
+pushd $(git rev-parse --show-toplevel) >> /dev/null
+
+# This seems like a good idea, but causes conflicts in practice, to be reevaluated
+# stash any changes we're not committing
+# git stash -q --keep-index
+
+# run all the scripts named "pre-commit-*", aggregate the return codes
+status=0
+for script in $(find .git/hooks/ -name "pre-commit-*"); do
+  chmod +x $script
+  $script
+  status=$(($status + $?))
+done
+
+# undo our setup
+# git stash pop -q
+popd >> /dev/null
+
+# display a helpful message if the commit was blocked
+echo ""
+if [ $status -ne 0 ]; then
+  echo "Run 'git commit --no-verify' to disable pre-commit hooks and commit anyways. \n"
+fi
+
+exit $status

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Check for duplicate words on a single line:
+git diff --cached --name-only | xargs /usr/local/bin/ggrep -e '\b(\w+)\b\s*\b\1\b' --color -HPn
+if [ $? -eq 0 ]; then  # status code = 0 means lines are found
+  exit 1
+else
+  # search spanning multiple lines as a backup check, but the output isn't as
+  # helpful since we don't get line numbers or surrounding syntax
+  git diff --cached --name-only | xargs /usr/local/bin/ggrep -e '\b(\w+)\b\s*\b\1\b' --color -HPoza
+  if [ $? -eq 0 ]; then  # status code = 0 means lines are found
+    exit 1
+  fi #
+fi
+exit 0
