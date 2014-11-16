@@ -10,6 +10,7 @@ pushd $(git rev-parse --show-toplevel) >> /dev/null
 # run all the scripts named "pre-commit-*", aggregate the return codes
 status=0
 for script in $(find .git/hooks/ -name "pre-commit-*"); do
+  echo $(basename $script)
   chmod +x $script
   $script
   status=$(($status + $?))
