@@ -1,25 +1,29 @@
-git_template directory composed primarily of various commit hooks. 
+git hooks that I use on all my repos.
+
+## Hooks
+
+- `pre-commit-catch-do-not-commit-flag`
+	- Checks if the words "do not commit" exist in any of the modified files.
+- `pre-commit-no-duplicate-words`
+	- Checks if duplicate words (ex: "of of") exist in any of the modified files. 
+- `pre-commit-no-trailing-whitespace`
+	- Checks if there is any trailing whitespace in any of the modified files.
 
 ## Installation
 
 ```
-$ git clone … ~/src/git_template
-$ git config --global init.templatedir '~/src/git_template'
-$ ~/src/git_template/setup.sh
+$ git clone … ~/src/git_hooks
+$ cd my_awesome_repo
+$ ~/src/git_hooks/setup
 ```
 
-## Usage
+## Development
 
-- The plan is to have one script for each check we want to do as a part of the hook, then name the file `[hook name]-[check_name]`, ex: `pre-commit` `-` `no-trailing-whitespace`
+- There is one script for each check we want to do as a part of the hook.
+- The files are named `[hook name]-[check_name]`, ex: `pre-commit` `-` `no-trailing-whitespace`
 - Then we have one script run `[hook name]-*` and aggregate the results
 
-Hooks:
-- `pre-commit-catch-do-not-commit-flag`
-- `pre-commit-no-duplicate-words`
-- `pre-commit-no-trailing-whitespace`
+## Implementation Notes
 
----
-Installation Instructions:
-- After checking out this branch or merging this into master, run: 
-`cw_mainsite/etc/hooks/setup` 
-
+### Why use symlinks instead of git init.templatedir?
+Because running `git init` with a specified `init.templatedir` just copies over (and does not overwrite) files, which makes getting updates to these commit hooks difficult. 
