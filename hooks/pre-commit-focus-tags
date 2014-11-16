@@ -1,0 +1,12 @@
+#!/bin/sh
+
+status=0
+flags=( ':focus' 'focus: true' 'focus => true')
+for flag in "${flags[@]}"; do
+  git diff --cached --name-only | grep "spec" | xargs /usr/local/bin/ggrep "$flag" --color -Hni
+  if [ $? -eq 0 ]; then  # status code = 0 means lines are found
+    status=1
+  fi
+done
+
+exit $status

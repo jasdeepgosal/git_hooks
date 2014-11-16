@@ -8,6 +8,8 @@ git hooks that I use on all my repos.
 	- Checks if duplicate words (ex: "of of") exist in any of the modified files. 
 - `pre-commit-no-trailing-whitespace`
 	- Checks if there is any trailing whitespace in any of the modified files.
+- `pre-commit-focus-tags`
+  - Checks if there are any ":focus" tags left in any spec files.
 
 ## Installation
 
@@ -26,4 +28,4 @@ $ ~/src/git_hooks/setup
 ## Implementation Notes
 
 ### Why use symlinks instead of git init.templatedir?
-Because running `git init` with a specified `init.templatedir` just copies over (and does not overwrite) files, which makes getting updates to these commit hooks difficult. 
+Because running `git init` with a specified `init.templatedir` just copies over (and does not overwrite) files, which makes getting updates to these commit hooks difficult.
