@@ -12,6 +12,8 @@ git hooks that I use on all my repos.
   - Checks if there are any ":focus" tags left in any spec files.
 - `pre-commit-rubocop`
   - Runs `rubocop` on any modified `*.rb` files.
+- `pre-commit-rails_best_practices`
+  - Runs `rails_best_practices` on any modified files, but ignores "remove unused" warnings because they're inaccurate when not being run on the full codebase.
 
 ## Installation
 
