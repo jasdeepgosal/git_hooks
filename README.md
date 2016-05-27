@@ -2,6 +2,7 @@ git hooks that I use on all my repos.
 
 ## Hooks
 
+### pre-commit
 - `pre-commit-catch-do-not-commit-flag`
 	- Checks if the words "do not commit" exist in any of the modified files.
 - `pre-commit-no-duplicate-words`
@@ -16,6 +17,10 @@ git hooks that I use on all my repos.
   - Runs `rails_best_practices` on any modified files, but ignores "remove unused" warnings because they're inaccurate when not being run on the full codebase.
 - `pre-commit-commit-directly-on-master`
   - Checks if you're committing directly on master.
+
+### prepare-commit-msg
+- `prepare-commit-msg`
+  - Check if there is a pivotal tracker story number in the branch name & automatically adds the tag.
 
 ## Installation
 
