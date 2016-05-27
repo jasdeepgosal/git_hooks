@@ -18,6 +18,7 @@ popd >> /dev/null
 # make sure we have the brew version of grep installed because the native grep
 # doesn't support the -P (pcre) or -z (convert newlines to nulls) flags
 if [ ! -f /usr/local/bin/ggrep ]; then
-  brew install grep
+  brew tap homebrew/dupes
+  brew install homebrew/dupes/grep
 fi
 
