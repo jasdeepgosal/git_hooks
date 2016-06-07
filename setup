@@ -4,7 +4,7 @@ get_abs_filename() {
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
 
-pushd $(git rev-parse --show-toplevel) >> /dev/null
+cd $(git rev-parse --show-toplevel)
 
 # symlink our hooks to the .git hooks folder
 # -f overwrites any existing files
@@ -13,12 +13,12 @@ filename=$(dirname $0)
 full_dir_path=$(get_abs_filename $filename)
 ln -sf $full_dir_path"/hooks/"* .git/hooks/
 
-popd >> /dev/null
+cd -
 
 # make sure we have the brew version of grep installed because the native grep
 # doesn't support the -P (pcre) or -z (convert newlines to nulls) flags
-if [ ! -f /usr/local/bin/ggrep ]; then
-  brew tap homebrew/dupes
-  brew install homebrew/dupes/grep
-fi
+#if [ ! -f /usr/local/bin/ggrep ]; then
+  #brew tap homebrew/dupes
+  #brew install homebrew/dupes/grep
+#fi
 
