@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 count=$(git diff --cached --name-only | grep ".rb$" -c)
 if [ $count -eq 0 ]; then

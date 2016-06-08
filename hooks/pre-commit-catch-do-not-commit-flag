@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 status=0
 flags=( 'DO NOT COMMIT' 'DO_NOT_COMMIT' 'DONOTCOMMIT')
 for flag in "${flags[@]}"; do
-  git diff --cached --name-only | xargs /usr/local/bin/ggrep "$flag" --color -Hni
+  git diff --cached --name-only | xargs grep "$flag" --color -Hni
   if [ $? -eq 0 ]; then  # status code = 0 means lines are found
     status=1
   fi

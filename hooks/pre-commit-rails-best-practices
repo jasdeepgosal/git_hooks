@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 warning_count=$(git diff --cached --name-only | grep ".rb$" | xargs rails_best_practices --silent | grep -v "remove unused" -c)
 if [ $warning_count -eq 4 ]; then
   exit 0 # there are always 4 lines of output.
 fi
 
-git diff --cached --name-only | grep ".rb$" | xargs rails_best_practices --silent
+git diff --cached --name-only | grep ".rb$" | xargs bundle exec rails_best_practices --silent
