@@ -5,4 +5,4 @@ if [ $count -eq 0 ]; then
   exit 0
 fi
 
-git diff --cached --name-only | grep ".rb$" | xargs rubocop
+bundle exec rubocop `git diff HEAD --name-only --diff-filter=MA & git diff master..HEAD --name-only --diff-filter=MA | sort | uniq`

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check for duplicate words on a single line:
-git diff --cached --name-only | xargs grep -e '\b(\w+)\b\s*\b\1\b' --color -HPn
+git diff --cached --name-only | xargs ggrep -e '\b(\w+)\b\s*\b\1\b' --color -HPn
 if [ $? -eq 0 ]; then  # status code = 0 means lines are found
   exit 1
 else
@@ -9,11 +9,11 @@ else
   # helpful since we don't get line numbers or surrounding syntax, and we can't
   # run this check on ruby code because it always picks up "end … end … end"
   # where we close blocks.
-  count=$(git diff --cached --name-only | grep -v ".rb$" -c)
+  count=$(git diff --cached --name-only | ggrep -v ".rb$" -c)
   if [ $count -eq 0 ]; then
     exit 0
   fi
-  git diff --cached --name-only | grep -v ".rb$" | xargs grep -e '\b(\w+)\b\s*\b\1\b' --color -HPoza
+  git diff --cached --name-only | ggrep -v ".rb$" | xargs ggrep -e '\b(\w+)\b\s*\b\1\b' --color -HPoza
   if [ $? -eq 0 ]; then  # status code = 0 means lines are found
     exit 1
   fi
